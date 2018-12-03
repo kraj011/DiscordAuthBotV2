@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Discord Auth Bot V2',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

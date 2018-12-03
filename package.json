@@ -1,9 +1,11 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "DiscordAuthBotV2",
+  "description": "Discord auth bot V2",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "David Krajewski",
   "dependencies": {
+    "antd": "^3.11.0",
+    "discord.io": "github:woor/discord.io#gateway_v6",
     "gatsby": "^2.0.53",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.9",
@@ -22,7 +24,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop && node ./src/scripts/runDiscord.js",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -32,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/kraj011/DiscordAuthBotV2/"
   }
 }

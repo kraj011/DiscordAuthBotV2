@@ -18,7 +18,7 @@ Run the following commands to install
 
 ```sh
 npm install
-gatsby develop
+npm run develop
 ```
 
 ## Questions?
