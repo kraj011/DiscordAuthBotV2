@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/kraj011/DiscordAuthBotV2/issues"
   },
-  "homepage": "https://github.com/kraj011/DiscordAuthBotV2#readme"
+  "homepage": "https://github.com/kraj011/DiscordAuthBotV2#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
