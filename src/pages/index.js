@@ -11,6 +11,8 @@ const IndexPage = () => (
       <Link to="/manage/">Manage Users</Link>
       <br />
       <Link to="/create/">Create Keys</Link>
+      <br />
+      <Link to="/settings/">Settings</Link>
     </div>
     
   </Layout>

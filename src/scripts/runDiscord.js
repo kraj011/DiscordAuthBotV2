@@ -1,9 +1,13 @@
 var Discord = require('discord.io');
+var token = require('../info/settings.json');
  
+
 var bot = new Discord.Client({
-    token: "NTE5MDE2NjczNzk0MzI2NTM5.DuZLfg.LCVR-6y4QV0QIceM8eDAogTRels",
+    token: token["token"],
     autorun: true
 });
+
+console.log(token["token"])
  
 bot.on('ready', function() {
     console.log('Logged in as %s - %s\n', bot.username, bot.id);

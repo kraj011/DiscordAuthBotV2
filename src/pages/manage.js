@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag, Button } from 'antd';
 import 'antd/dist/antd.css';
 import userInfo from '../info/users.json';
 import Layout from '../components/layout';
@@ -18,9 +18,6 @@ const data = []
 for(var i = 0; i < Object.keys(userInfo).length; i++) {
     data.push({'key': i + 1, 'discord': Object.keys(userInfo)[i], 'identifier': userInfo[Object.keys(userInfo)[i]]})
 }
-
-console.log(data)
-
 
 class Manage extends React.Component {
 
@@ -43,6 +40,10 @@ class Manage extends React.Component {
       constructor(props) {
           super(props)
       }
+
+    unbindKeys = () => {
+        console.log(this.state);
+    }
 
 
     
@@ -68,6 +69,7 @@ class Manage extends React.Component {
                 },
                 })}
             />
+            <Button>Unbind Selected</Button>
         </Layout>
         )
     }
