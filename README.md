@@ -26,7 +26,8 @@ npm run develop
 - Go to https://discordapp.com/developers/applications/
 - Create a new bot and name it what you want and give it an icon if you would like
 - Go to Bot on the left panel and click create bot
-- Click reveal token, copy this token, and go to src/scripts/runDiscord.js and change the token string to the token you copies (TODO: Set the token in the dashboard?)
+- Click reveal token, copy this token, and go to src/info/settings.json and change the token string to the token you copied (TODO: Set the token in the dashboard)
+- Save the settings.json file
 
 ## Questions?
 If you have any questions, feel free to message me on twitter @DynxSZN
