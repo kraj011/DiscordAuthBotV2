@@ -6,17 +6,17 @@ import userInfo from '../info/users.json';
 import Layout from '../components/layout';
 
 const columns = [{
-    title: 'Discord',
-    dataIndex: 'discord'
-  }, {
     title: 'Key',
-    dataIndex: 'identifier',
+    dataIndex: 'identifier'
+  }, {
+    title: 'Discord',
+    dataIndex: 'discord',
   }];
 
 const data = []
 
 for(var i = 0; i < Object.keys(userInfo).length; i++) {
-    data.push({'key': i + 1, 'discord': Object.keys(userInfo)[i], 'identifier': userInfo[Object.keys(userInfo)[i]]})
+    data.push({'key': Object.keys(userInfo)[i], 'discord':userInfo[Object.keys(userInfo)[i]] , 'identifier': Object.keys(userInfo)[i]})
 }
 
 class Manage extends React.Component {
