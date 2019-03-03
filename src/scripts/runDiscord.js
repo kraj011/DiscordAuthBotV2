@@ -37,66 +37,160 @@ client.on('message', message => {
                 return
             }
             var key = messageSplit[1]
+            analyzeKey(message, key);
 
-
-            fs.readFile(__dirname + "/../info/users.json", function (err, data) {
-                if (err) {
-                    console.log(err)
-                }
-
-                var json = JSON.parse(data);
-                // console.log(json)
-                var keyFound = false
-                for (var i = 0; i < Object.keys(json).length; i++) {
-                    var cKey = Object.keys(json)[i]
-                    console.log(cKey)
-                    if (cKey == key) {
-                        console.log("key found!")
-                        keyFound = true;
-
-                        if (json[cKey] == "none") {
-                            // bind discord here
-                            json[cKey] = message.author.tag;
-                            fs.writeFile(__dirname + "/../info/users.json", JSON.stringify(json), function (err) {
-                                if (err) {
-                                    console.log(err);
-                                }
-                            });
-                            message.channel.send({
-                                embed: {
-                                    color: 0x00ff00,
-                                    description: "Activated!"
-                                }
-                            });
-                        } else {
-                            console.log("key already in use")
-
-                            message.channel.send({
-                                embed: {
-                                    color: 0xff0000,
-                                    description: "Key already in use!"
-                                }
-                            });
-                            return
-                        }
-                    }
-                }
-                if (!keyFound) {
-                    // key invalid
-                    return
-                }
-
-            })
-
-
-
-
-        } else if (message.content.startsWith == "!deactivate") {
+        } else if (messageSplit[0] == "!deactivate") {
             // deactivating key
+            if (messageSplit.length != 2) {
+                // wrong format
+                console.log("wrong format!")
+                return
+            }
+            var key = messageSplit[1]
+            deactivateKey(message, key)
+        } else if (messageSplit[0] == "!help") {
+            // help
+            displayHelp(message)
         }
 
     }
 });
+
+function analyzeKey(message, key) {
+    fs.readFile(__dirname + "/../info/users.json", function (err, data) {
+        if (err) {
+            console.log(err)
+        }
+
+        var json = JSON.parse(data);
+        // console.log(json)
+        var keyFound = false
+        for (var i = 0; i < Object.keys(json).length; i++) {
+            var cKey = Object.keys(json)[i]
+            console.log(cKey)
+            if (cKey == key) {
+                console.log("key found!")
+                keyFound = true;
+
+                if (json[cKey] == "none") {
+                    // bind discord here
+                    json[cKey] = message.author.tag;
+                    fs.writeFile(__dirname + "/../info/users.json", JSON.stringify(json), function (err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    message.channel.send({
+                        embed: {
+                            color: 0x00ff00,
+                            description: "Activated!"
+                        }
+                    });
+                } else {
+                    console.log("key already in use")
+
+                    message.channel.send({
+                        embed: {
+                            color: 0xff0000,
+                            description: "Key already in use!"
+                        }
+                    });
+                    return
+                }
+            }
+        }
+        if (!keyFound) {
+            // key invalid
+            message.channel.send({
+                embed: {
+                    color: 0xff0000,
+                    description: "Key not found!"
+                }
+            });
+            return
+        }
+
+    })
+}
+
+function displayHelp(message) {
+    message.channel.send({
+        embed: {
+            color: 0x00ff00,
+            description: "Usage: !activate <<key>> or !deactivate <<key>>"
+        }
+    });
+    return
+}
+
+function deactivateKey(message, key) {
+    console.log("deactivate key called")
+    fs.readFile(__dirname + "/../info/users.json", function (err, data) {
+        if (err) {
+            console.log(err)
+        }
+
+        var json = JSON.parse(data);
+        // console.log(json)
+        var keyFound = false
+        for (var i = 0; i < Object.keys(json).length; i++) {
+            var cKey = Object.keys(json)[i]
+            console.log(cKey)
+            if (cKey == key) {
+                console.log("key found!")
+                keyFound = true;
+
+                if (json[cKey] == "none") {
+                    // key already unbound 
+
+                    message.channel.send({
+                        embed: {
+                            color: 0x00ff00,
+                            description: "Key is already deactivated!"
+                        }
+                    });
+                    return
+                } else {
+                    // check if key is the user's 
+                    if (json[cKey] != message.author.tag) {
+                        message.channel.send({
+                            embed: {
+                                color: 0xff0000,
+                                description: "Cannot unbind a key that is not yours!"
+                            }
+                        });
+                        return
+                    }
+                    json[cKey] = "none";
+                    fs.writeFile(__dirname + "/../info/users.json", JSON.stringify(json), function (err) {
+                        if (err) {
+                            console.log(err);
+                        }
+                    });
+                    message.channel.send({
+                        embed: {
+                            color: 0x00ff00,
+                            description: "Key deactivated!"
+                        }
+                    });
+                    return
+                }
+            }
+        }
+        if (!keyFound) {
+            // key invalid
+            message.channel.send({
+                embed: {
+                    color: 0xff0000,
+                    description: "Key not found!"
+                }
+            });
+            return
+        }
+
+    })
+}
+
 
 // Log your bot in using the token from https://discordapp.com/developers/applications/me
 fs.readFile(__dirname + "/../info/settings.json", function (err, data) {

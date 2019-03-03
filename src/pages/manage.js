@@ -4,7 +4,6 @@ import { Table, Divider, Tag, Button } from 'antd'
 import 'antd/dist/antd.css'
 import userInfo from '../info/users.json'
 import Layout from '../components/layout'
-import fs from 'fs'
 
 const columns = [
   {
@@ -49,21 +48,21 @@ class Manage extends React.Component {
   }
 
   unbindKeys = () => {
-    fs.readFile(__dirname + '/../info/users.json', function(err, body, data) {
-      if (err) {
-        console.log(err)
-        return
-      }
-      let json = JSON.parse(data)
-      for (let i = 0; i < this.state['selectedRowKeys'].length; i++) {
-        for (let j = 0; j < Object.keys(json).length; j++) {
-          if (Object.keys(json)[j] == this.state['selectedRowKeys'][i]) {
-            Object.keys(json)[j] = 'none'
-            break
-          }
-        }
-      }
-    })
+    // fs.readFile(__dirname + '/../info/users.json', function(err, body, data) {
+    //   if (err) {
+    //     console.log(err)
+    //     return
+    //   }
+    //   let json = JSON.parse(data)
+    //   for (let i = 0; i < this.state['selectedRowKeys'].length; i++) {
+    //     for (let j = 0; j < Object.keys(json).length; j++) {
+    //       if (Object.keys(json)[j] == this.state['selectedRowKeys'][i]) {
+    //         Object.keys(json)[j] = 'none'
+    //         break
+    //       }
+    //     }
+    //   }
+    // })
   }
 
   render() {

@@ -26,7 +26,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop & node ./src/scripts/runDiscord.js",
+    "develop": "gatsby develop | node ./src/scripts/runDiscord.js",
     "start": "npm run develop",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
