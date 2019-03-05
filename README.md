@@ -1,4 +1,4 @@
-# Discord Auth Bot V2
+# Discord Auth Bot V2 (NOT READY TO USE!)
 
 Discord Auth Bot V2 is a new and improved version of my original discord auth bot. This project is written with the Node.js framework and React as opposed to using java, making it much easier to setup.
 
