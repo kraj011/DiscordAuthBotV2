@@ -16,7 +16,6 @@ My goals for this project:
 
 - Make sure you have npm installed (https://www.npmjs.com/get-npm)
 - Make sure you have yarn installed (https://yarnpkg.com/en/)
-- Make sure you have gatsby installed (type "npm install -g gatsby-cli" in your preffered terminal once you have npm installed)
 - Make sure ports 8000 and 8001 are available
 
 ## Installation
@@ -66,6 +65,8 @@ npm start
 - [ ] Add custom key creation
 - [ ] Add credit card provider implementation
 - [ ] Add keys that can expire at certain times
+- [ ] Add key groups / types
+- [ ] Switch to a formal DB instead of local json files
 
 ## Questions?
 
