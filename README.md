@@ -20,7 +20,11 @@ My goals for this project:
 
 ## Installation
 
-Run the following commands on your preffered terminal to install
+First, hit the "Clone or Download" button in the top right of the screen. This will download a zip file of the project.
+
+Next, extract the zip file.
+
+Run the following commands on your preferred terminal to install
 
 - Quick note: If you are on a mac or linux machine, you may need to run the npm install command with sudo in front of it (i.e. sudo npm install)
 
