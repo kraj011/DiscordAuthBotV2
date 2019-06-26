@@ -12,7 +12,7 @@ My goals for this project:
 
 - Make sure you have npm installed (https://www.npmjs.com/get-npm)
 - Make sure you have yarn installed (https://yarnpkg.com/en/)
-- Make sure you have gatsby installed (https://www.gatsbyjs.org/docs/)
+- Make sure you have gatsby installed (npm install -g gatsby-cli)
 - Make sure ports 8000 and 8001 are available
 
 ## Installation
