@@ -2,6 +2,10 @@
 
 Discord Auth Bot V2 is a new and improved version of my original discord auth bot. This project is written with the Node.js framework and React as opposed to using java, making it much easier to setup.
 
+![Image from Gyazo](https://i.gyazo.com/ec2ba45cef2878a860ab2bb283c9f446.gif)
+
+![Image from Gyazo](https://i.gyazo.com/4b3081187336c9e09cb757fc3317ce21.gif)
+
 My goals for this project:
 
 - Easier to setup
@@ -36,8 +40,6 @@ npm start
 - Once you update this token, restart the program by quitting terminal and running "npm start" again to make sure the bot uses the updated token
 
 ## Usage
-
-The bot does not yet have all the functionality I would like it to have, but for the time being here is how to use it:
 
 - Users can DM the bot with !help for how to activate a key with the bot
 - Users can DM the bot with !activate <<key>> to activate a key with the bot
