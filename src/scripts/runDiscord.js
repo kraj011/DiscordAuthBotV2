@@ -17,19 +17,17 @@ const client = new Client();
  * received from Discord
  */
 client.on('ready', () => {
-    console.log('I am ready!');
+    console.log('Discord AUTH BOT running!');
 });
 
 client.on('message', message => {
     // If the message is "how to embed"
     if (message.author.bot) return;
 
-    console.log("got message!")
     if (message.channel.type == "dm") {
         var messageSplit = message.content.split(" ");
         if (messageSplit[0] == "!activate") {
             // activating key
-            console.log("got activate!")
 
             if (messageSplit.length != 2) {
                 // wrong format
@@ -55,6 +53,15 @@ client.on('message', message => {
 
     }
 });
+
+function testStuff(message) {
+    var role = client.guilds.first().roles.find("name", "Verified");
+    client.guilds.first().members.find((m) => {
+        if (m.id == message.author.id) {
+            m.addRole(role)
+        }
+    })
+}
 
 function analyzeKey(message, key) {
     fs.readFile(__dirname + "/../info/users.json", function (err, data) {
@@ -86,6 +93,27 @@ function analyzeKey(message, key) {
                             description: "Activated!"
                         }
                     });
+                    fs.readFile(__dirname + "/../info/settings.json", function (err2, settingsData) {
+                        let settings = JSON.parse(settingsData)
+                        if (settings["roleToAdd"] != "") {
+                            var role = client.guilds.first().roles.find("name", settings["roleToAdd"]);
+                            client.guilds.first().members.find((m) => {
+                                if (m.id == message.author.id) {
+                                    m.addRole(role)
+                                }
+                            })
+                        }
+                        if (settings["roleToRemove"] != "") {
+                            var role = client.guilds.first().roles.find("name", settings["roleToRemove"]);
+                            client.guilds.first().members.find((m) => {
+                                if (m.id == message.author.id) {
+                                    m.removeRole(role)
+                                }
+                            })
+                        }
+                    })
+
+
                 } else {
                     console.log("key already in use")
 
@@ -173,6 +201,25 @@ function deactivateKey(message, key) {
                             description: "Key deactivated!"
                         }
                     });
+                    fs.readFile(__dirname + "/../info/settings.json", function (err2, settingsData) {
+                        let settings = JSON.parse(settingsData)
+                        if (settings["roleToAdd"] != "") {
+                            var role = client.guilds.first().roles.find("name", settings["roleToAdd"]);
+                            client.guilds.first().members.find((m) => {
+                                if (m.id == message.author.id) {
+                                    m.removeRole(role)
+                                }
+                            })
+                        }
+                        if (settings["roleToRemove"] != "") {
+                            var role = client.guilds.first().roles.find("name", settings["roleToRemove"]);
+                            client.guilds.first().members.find((m) => {
+                                if (m.id == message.author.id) {
+                                    m.addRole(role)
+                                }
+                            })
+                        }
+                    })
                     return
                 }
             }
@@ -195,10 +242,13 @@ function deactivateKey(message, key) {
 // Log your bot in using the token from https://discordapp.com/developers/applications/me
 fs.readFile(__dirname + "/../info/settings.json", function (err, data) {
     if (err) {
-        console.log(err)
+        console.log(err);
         return;
     }
     let json = JSON.parse(data);
-    console.log(json["token"]);
-    client.login(json["token"])
+    if (json["token"] != '') {
+        client.login(json["token"])
+    } else {
+        console.log("Token empty! Not starting bot!")
+    }
 })

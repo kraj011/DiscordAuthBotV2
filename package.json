@@ -5,8 +5,11 @@
   "author": "David Krajewski",
   "dependencies": {
     "antd": "^3.11.0",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
     "discord.io": "github:woor/discord.io#gateway_v6",
     "discord.js": "^11.4.2",
+    "express": "^4.17.1",
     "gatsby": "^2.0.53",
     "gatsby-image": "^2.0.20",
     "gatsby-plugin-manifest": "^2.0.9",
@@ -26,8 +29,8 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop | node ./src/scripts/runDiscord.js",
-    "start": "npm run develop",
+    "develop": "gatsby develop | node ./src/scripts/runDiscord.js | node ./src/scripts/localApi.js",
+    "start": "concurrently \"gatsby develop\" \"node ./src/scripts/runDiscord.js\" \"node ./src/scripts/localApi.js\"",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
