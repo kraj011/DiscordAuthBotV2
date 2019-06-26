@@ -43,12 +43,11 @@ The bot does not yet have all the functionality I would like it to have, but for
 - Users can DM the bot with !activate <<key>> to activate a key with the bot
 - Users can DM the bot with !deactivate <<key>> to deactivate a key with the bot
 
-- To open the dashboard, open a browser with: http://127.0.0.1:8000/
+- To open the dashboard, make sure the npm start command was run and open a browser with: http://127.0.0.1:8000/
 - For the time being, you can not set the token, unbind user keys, nor generate keys from the dashboard, but in the meantime you can see in real time users activating and deactivating keys from the manage keys section of the dashboard
 
-- To add a key, simply open the src/info/users.json file and add a key in the format: "THE KEY YOU WANT":"none"
-  - Make sure that the value is none for the key to allow a user to bind to that key
-- To deactivate a key just search for the key in the same json file and in the value section it should be the user's username. Replace that with "none" to deactivate it manually
+- To add a key, simply open the dashboard and go to the generate keys section. Here, enter the amount of keys you would like to generate and the length of each key
+- To deactivate a key, go to the manage users page and click on the keys you wish to deactivate and hit the "unbind selected" button at the bottom
 
 - (Optional) In the settings page, you are able to set a role to add to authenticated users and a role to remove from authenticated users:
   - Role to add: When the user activates their key, this role will be applied to them (i.e. a role showing that they are authenticated)
