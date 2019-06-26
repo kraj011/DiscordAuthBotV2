@@ -31,6 +31,7 @@ Run the following commands on your preferred terminal to install
 ```sh
 cd [file path of where this project is stored]
 npm install
+yarn upgrade
 npm start
 ```
 
@@ -39,6 +40,7 @@ npm start
 - Go to https://discordapp.com/developers/applications/
 - Create a new bot and name it what you want and give it an icon if you would like
 - Go to Bot on the left panel and click create bot
+- Add the bot to your server
 - Click reveal token, copy this token and once you launch the program (follow instructions below) go to the settings page and save it in the field marked 'Token'
 - Once you update this token, restart the program by quitting terminal and running "npm start" again to make sure the bot uses the updated token
 
