@@ -81,7 +81,7 @@ function analyzeKey(message, key) {
 
                 if (json[cKey] == "none") {
                     // bind discord here
-                    json[cKey] = message.author.tag;
+                    json[cKey] = message.author.id;
                     fs.writeFile(__dirname + "/../info/users.json", JSON.stringify(json), function (err) {
                         if (err) {
                             console.log(err);
@@ -180,7 +180,7 @@ function deactivateKey(message, key) {
                     return
                 } else {
                     // check if key is the user's 
-                    if (json[cKey] != message.author.tag) {
+                    if (json[cKey] != message.author.id) {
                         message.channel.send({
                             embed: {
                                 color: 0xff0000,
