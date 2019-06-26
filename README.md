@@ -17,7 +17,7 @@ My goals for this project:
 
 ## Installation
 
-Run the following commands to install
+Run the following commands on your preffered terminal to install
 
 - Quick note: If you are on a mac or linux machine, you may need to run the npm install command with sudo in front of it (i.e. sudo npm install)
 
@@ -33,6 +33,7 @@ npm start
 - Create a new bot and name it what you want and give it an icon if you would like
 - Go to Bot on the left panel and click create bot
 - Click reveal token, copy this token and once you launch the program (follow instructions below) go to the settings page and save it in the field marked 'Token'
+- Once you update this token, restart the program by quitting terminal and running "npm start" again to make sure the bot uses the updated token
 
 ## Usage
 
