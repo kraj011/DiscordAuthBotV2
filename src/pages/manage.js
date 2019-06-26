@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import { Table, Divider, Tag, Button } from 'antd'
+import { Table, Button } from 'antd'
 import 'antd/dist/antd.css'
 import userInfo from '../info/users.json'
 import Layout from '../components/layout'
@@ -44,18 +43,17 @@ class Manage extends React.Component {
     this.setState({ selectedRowKeys })
   }
 
-  constructor(props) {
-    super(props)
-  }
-
   unbindKeys = () => {
     for (let i = 0; i < this.state['selectedRowKeys'].length; i++) {
       var body = {
         key: this.state['selectedRowKeys'][i],
       }
-      axios.post('http://127.0.0.1:8001/unbind', body).catch(function(error) {
-        console.log(error)
-      })
+      axios
+        .post('http://127.0.0.1:8001/unbind', body)
+        .catch(function(error) {
+          console.log(error)
+        })
+        .then(res => console.log(res))
     }
   }
 

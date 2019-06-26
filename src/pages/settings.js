@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import userData from '../info/settings.json'
 
 import Layout from '../components/layout'
@@ -14,9 +13,6 @@ class Settings extends React.Component {
     roleToRemove: '',
   }
 
-  constructor(props) {
-    super(props)
-  }
   componentDidMount() {
     this.getInfo()
   }

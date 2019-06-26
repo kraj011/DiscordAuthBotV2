@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
-import { Button, Input, InputNumber, Alert, List } from 'antd'
+import { Button, InputNumber, Alert, List } from 'antd'
 
 import axios from 'axios'
 
@@ -21,9 +20,6 @@ class Create extends React.Component {
     length: 0,
     errorMessage: '',
     hideError: true,
-  }
-  constructor(props) {
-    super(props)
   }
 
   updateLength = val => {
@@ -46,7 +42,7 @@ class Create extends React.Component {
   }
 
   generateTapped = () => {
-    if (this.state.amount == 0 || this.state.length == 0) {
+    if (this.state.amount === 0 || this.state.length === 0) {
       this.setState({
         errorMessage:
           'Please enter an amount and length to properly generate your keys!',
