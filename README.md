@@ -44,7 +44,7 @@ The bot does not yet have all the functionality I would like it to have, but for
 - Users can DM the bot with !deactivate <<key>> to deactivate a key with the bot
 
 - To open the dashboard, make sure the npm start command was run and open a browser with: http://127.0.0.1:8000/
-- For the time being, you can not set the token, unbind user keys, nor generate keys from the dashboard, but in the meantime you can see in real time users activating and deactivating keys from the manage keys section of the dashboard
+- At any point, to return to the dashboard home page simply click the title at the top of the page
 
 - To add a key, simply open the dashboard and go to the generate keys section. Here, enter the amount of keys you would like to generate and the length of each key
 - To deactivate a key, go to the manage users page and click on the keys you wish to deactivate and hit the "unbind selected" button at the bottom
