@@ -39,13 +39,7 @@ client.on('message', message => {
 
         } else if (messageSplit[0] == "!deactivate") {
             // deactivating key
-            if (messageSplit.length != 2) {
-                // wrong format
-                console.log("wrong format!")
-                return
-            }
-            var key = messageSplit[1]
-            deactivateKey(message, key)
+            deactivateKey(message);
         } else if (messageSplit[0] == "!help") {
             // help
             displayHelp(message)
@@ -81,7 +75,7 @@ function analyzeKey(message, key) {
 
                 if (json[cKey] == "none") {
                     // bind discord here
-                    json[cKey] = message.author.tag;
+                    json[cKey] = message.author.id;
                     fs.writeFile(__dirname + "/../info/users.json", JSON.stringify(json), function (err) {
                         if (err) {
                             console.log(err);
@@ -151,90 +145,59 @@ function displayHelp(message) {
     return
 }
 
-function deactivateKey(message, key) {
+function deactivateKey(message) {
     console.log("deactivate key called")
     fs.readFile(__dirname + "/../info/users.json", function (err, data) {
         if (err) {
-            console.log(err)
+            console.log(err);
         }
 
         var json = JSON.parse(data);
         // console.log(json)
-        var keyFound = false
-        for (var i = 0; i < Object.keys(json).length; i++) {
-            var cKey = Object.keys(json)[i]
-            console.log(cKey)
-            if (cKey == key) {
-                console.log("key found!")
-                keyFound = true;
-
-                if (json[cKey] == "none") {
-                    // key already unbound 
-
-                    message.channel.send({
-                        embed: {
-                            color: 0x00ff00,
-                            description: "Key is already deactivated!"
-                        }
-                    });
-                    return
-                } else {
-                    // check if key is the user's 
-                    if (json[cKey] != message.author.tag) {
-                        message.channel.send({
-                            embed: {
-                                color: 0xff0000,
-                                description: "Cannot unbind a key that is not yours!"
-                            }
-                        });
-                        return
+        for (let key in json) {
+            if (json[key] === message.author.id) {
+                // key valid.
+                json[key] === 'none'; //unbind the key.
+                fs.writeFile(__dirname + "/../info/users.json", JSON.stringify(json), function (err) {
+                    if (err) {
+                        console.log(err);
                     }
-                    json[cKey] = "none";
-                    fs.writeFile(__dirname + "/../info/users.json", JSON.stringify(json), function (err) {
-                        if (err) {
-                            console.log(err);
-                        }
-                    });
-                    message.channel.send({
-                        embed: {
-                            color: 0x00ff00,
-                            description: "Key deactivated!"
-                        }
-                    });
-                    fs.readFile(__dirname + "/../info/settings.json", function (err2, settingsData) {
-                        let settings = JSON.parse(settingsData)
-                        if (settings["roleToAdd"] != "") {
-                            var role = client.guilds.first().roles.find("name", settings["roleToAdd"]);
-                            client.guilds.first().members.find((m) => {
-                                if (m.id == message.author.id) {
-                                    m.removeRole(role)
-                                }
-                            })
-                        }
-                        if (settings["roleToRemove"] != "") {
-                            var role = client.guilds.first().roles.find("name", settings["roleToRemove"]);
-                            client.guilds.first().members.find((m) => {
-                                if (m.id == message.author.id) {
-                                    m.addRole(role)
-                                }
-                            })
-                        }
-                    })
-                    return
-                }
+                });
+                message.channel.send({
+                    embed: {
+                        color: 0x00ff00,
+                        description: "Key deactivated."
+                    }
+                });
+                fs.readFile(__dirname + "/../info/settings.json", function (err2, settingsData) {
+                    let settings = JSON.parse(settingsData)
+                    if (settings["roleToAdd"] !== "") {
+                        var role = client.guilds.first().roles.find("name", settings["roleToAdd"]);
+                        client.guilds.first().members.find((m) => {
+                            if (m.id == message.author.id) {
+                                m.removeRole(role)
+                            }
+                        })
+                    }
+                    if (settings["roleToRemove"] !== "") {
+                        var role = client.guilds.first().roles.find("name", settings["roleToRemove"]);
+                        client.guilds.first().members.find((m) => {
+                            if (m.id == message.author.id) {
+                                m.addRole(role)
+                            }
+                        })
+                    }
+                })
+                return;
             }
         }
-        if (!keyFound) {
-            // key invalid
-            message.channel.send({
-                embed: {
-                    color: 0xff0000,
-                    description: "Key not found!"
-                }
-            });
-            return
-        }
-
+        // we didn't return, so key wasn't unbinded.
+        message.channel.send({
+            embed: {
+                color: 0xff0000,
+                description: "You do not have a valid key."
+            }
+        });
     })
 }
 
