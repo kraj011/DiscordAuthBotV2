@@ -7,6 +7,8 @@ Discord Auth Bot V2 is a new and improved version of my original discord auth bo
 
 ![Image from Gyazo](https://i.gyazo.com/4b3081187336c9e09cb757fc3317ce21.gif)
 
+NOTE: I have not had the time to consistently work on this project, so feel free to submit any PR's :D
+
 My goals for this project:
 
 - Easier to setup
