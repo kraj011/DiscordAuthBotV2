@@ -78,6 +78,3 @@ npm start
 - [ ] Add key groups / types
 - [ ] Switch to a formal DB instead of local json files
 
-## Questions?
-
-If you have any questions, feel free to message me on twitter @DynxSZN
